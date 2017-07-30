@@ -16,5 +16,5 @@ RUN wget --no-verbose -O /tmp/ffmpeg.tar.gz http://johnvansickle.com/ffmpeg/rele
   && rm -rf /tmp/ffmpeg*
 
 
-WORKDIR /radiko
+WORKDIR /radio
 CMD bundle install && bundle exec ruby run.rb

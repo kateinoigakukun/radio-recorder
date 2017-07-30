@@ -12,6 +12,7 @@ class Recorder
 
   private
   def register_statoin(station_class)
+    return if station_class.schedule_list.nil?
     station_class.schedule_list.each do |schedule|
       typed_schedule = station_class::Schedule.new schedule
       Logger.register_log typed_schedule
