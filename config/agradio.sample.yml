@@ -1,0 +1,7 @@
+schedule:
+    - title: AGほげ
+      start: "13:22"
+      duration: 1
+      weekday: 0
+config:
+    output: ~/radiko/data
