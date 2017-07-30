@@ -1,0 +1,14 @@
+schedule:
+    - title: 小倉唯のyui＊room
+      station_id: QRR
+      start: "0:30"
+      duration: 30
+      weekday: 1
+
+    - title: ほげ
+      station_id: QRR
+      start: "13:22"
+      duration: 1
+      weekday: 0
+config:
+    output: ~/radiko/data
