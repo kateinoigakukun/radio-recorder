@@ -18,6 +18,8 @@ module Station
       end
 
       @client.record @schedule.duration * 60, "#{output}/#{date}.mp3"
+
+      return output
     end
   end
 end
