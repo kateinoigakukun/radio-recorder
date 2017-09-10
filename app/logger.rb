@@ -13,8 +13,8 @@ class Logger
       Logger.log %(#{schedule.title}の録画を開始しました)
     end
 
-    def record_done_log(schedule)
-      Logger.log %(#{schedule.title}の録画を完了しました)
+    def record_done_log(schedule, url)
+      Logger.log_with_at schedule_attachment(schedule, url)
     end
 
     def register_log(schedule)
@@ -22,8 +22,25 @@ class Logger
       Logger.log %(#{schedule.start} (#{days[schedule.weekday]}) に #{schedule.title}を登録しました)
     end
 
+    def schedule_attachment(schedule, url)
+      {
+        title: "#{schedule.title}の録画を完了しました",
+        title_link: url,
+        footer: "Radio Recorder",
+        color: "#F26964"
+      }
+    end
+
+    def attachment_log(att)
+      @slack_client.chat_postMessage(:channel => @channel, :text => text, :as_user => true)
+    end
+
     def log(text)
       @slack_client.chat_postMessage(:channel => @channel, :text => text, :as_user => true)
+    end
+
+    def log_with_at(attachments)
+      @slack_client.chat_postMessage(:channel => @channel, :attachments => attachments, :as_user => true)
     end
   end
 end
