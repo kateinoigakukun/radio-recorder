@@ -1,5 +1,7 @@
 class Recorder
 
+  STORAGE_URL = "https://bangohan.xyz"
+
   def initialize
     @scheduler = Rufus::Scheduler.new
     register_statoin Station::Radiko
@@ -18,8 +20,9 @@ class Recorder
       @scheduler.cron typed_schedule.cron_format do
         recorder = station_class.new typed_schedule
         Logger.record_start_log typed_schedule
-        recorder.record
-        Logger.record_done_log typed_schedule
+        output_path = recorder.record
+        url = "#{STORAGE_URL}/#{output_path}"
+        Logger.record_done_log typed_schedule, url
       end
     end
   end
