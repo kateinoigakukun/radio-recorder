@@ -1,0 +1,7 @@
+version: '2'
+services:
+  app:
+    build: .
+    volumes:
+      - /home/ysaito/workspace/radio-recorder:/radio
+      - /mnt/box/Personal/radio/:/radio/data

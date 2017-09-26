@@ -14,7 +14,7 @@ class Logger
     end
 
     def record_done_log(schedule, url)
-      Logger.log_with_at schedule_attachment(schedule, url)
+      Logger.log_with_at [schedule_attachment(schedule, url)]
     end
 
     def register_log(schedule)
@@ -29,10 +29,6 @@ class Logger
         footer: "Radio Recorder",
         color: "#F26964"
       }
-    end
-
-    def attachment_log(att)
-      @slack_client.chat_postMessage(:channel => @channel, :text => text, :as_user => true)
     end
 
     def log(text)
