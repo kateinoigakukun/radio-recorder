@@ -13,8 +13,8 @@ module Station
         @output_path ||= config['config']['output']
       end
 
-      def slack_channel
-        @slack_channel ||= config['config']['output']
+      def storage_path
+        @storage_path ||= config['config']['storage_path']
       end
 
       def config_name

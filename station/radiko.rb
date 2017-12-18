@@ -10,16 +10,17 @@ module Station
       @client = ::Radiko::Client.new
     end
 
+    def output_dir
+      "#{self.class.output_path}/#{@schedule.station_id}/#{@schedule.title}"
+    end
+
     def record
-      output = "#{self.class.output_path}/#{@schedule.station_id}/#{@schedule.title}"
+      output = output_dir
+      FileUtils.mkdir_p output unless Dir.exist? output
       date = DateTime.now.strftime("%Y-%m-%d-%H-%M-%S")
-      unless Dir.exist? output
-        FileUtils.mkdir_p output
-      end
-
-      @client.record @schedule.station_id, @schedule.duration * 60, "#{output}/#{date}.mp3"
-
-      return output
+      file_name = "#{date}.mp3"
+      @client.record @schedule.station_id, @schedule.duration * 60, "#{output}/#{file_name}"
+      return file_name
     end
   end
 end

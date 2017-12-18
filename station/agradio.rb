@@ -10,16 +10,17 @@ module Station
       @client = ::AGRadio::Recorder
     end
 
+    def output_dir
+      "#{self.class.output_path}/#{@schedule.title}"
+    end
+
     def record
-      output = "#{self.class.output_path}/#{@schedule.title}"
+      output = output_dir
+      FileUtils.mkdir_p output unless Dir.exist? output
       date = DateTime.now.strftime("%Y-%m-%d-%H-%M-%S")
-      unless Dir.exist? output
-        FileUtils.mkdir_p output
-      end
-
-      @client.record @schedule.duration * 60, "#{output}/#{date}.mp3"
-
-      return output
+      file_name = "#{date}.mp3"
+      @client.record @schedule.duration * 60, "#{output}/#{file_name}"
+      return file_name
     end
   end
 end

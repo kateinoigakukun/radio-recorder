@@ -16,15 +16,19 @@ class Recorder
   def register_statoin(station_class)
     return if station_class.schedule_list.nil?
     station_class.schedule_list.each do |schedule|
-      typed_schedule = station_class::Schedule.new schedule
-      Logger.register_log typed_schedule
-      @scheduler.cron typed_schedule.cron_format do
-        recorder = station_class.new typed_schedule
-        Logger.record_start_log typed_schedule
-        output_path = recorder.record
-        url = "#{STORAGE_URL}/#{output_path}"
-        Logger.record_done_log typed_schedule, url
-      end
+      record schedule, station_class
+    end
+  end
+
+  def record(schedule, station_class)
+    typed_schedule = station_class::Schedule.new schedule
+    Logger.register_log typed_schedule
+    @scheduler.cron typed_schedule.cron_format do
+      station = station_class.new typed_schedule
+      Logger.record_start_log typed_schedule
+      file_name = station.record
+      url = URLConstructor.storage_url station_class, file_name
+      Logger.record_done_log typed_schedule, url
     end
   end
 end
