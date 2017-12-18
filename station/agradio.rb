@@ -14,6 +14,10 @@ module Station
       "#{self.class.output_path}/#{@schedule.title}"
     end
 
+    def storage_path
+      "#{self.class.storage_path}/#{@schedule.title}"
+    end
+
     def record
       output = output_dir
       FileUtils.mkdir_p output unless Dir.exist? output
