@@ -27,7 +27,7 @@ class Recorder
       station = station_class.new typed_schedule
       Logger.record_start_log typed_schedule
       file_name = station.record
-      url = "#{station.storage_path}/#{file_name}"
+      url = URLConstructor.storage_url station, file_name
       Logger.record_done_log typed_schedule, url
     end
   end
