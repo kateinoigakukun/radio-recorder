@@ -22,7 +22,8 @@ module Station
       output = output_dir
       FileUtils.mkdir_p output unless Dir.exist? output
       date = DateTime.now.strftime("%Y-%m-%d-%H-%M-%S")
-      file_name = "#{date}.mp3"
+      file_ex = @schedule.video ? "mp4" : "mp3"
+      file_name = "#{date}.#{file_ex}"
       @client.record @schedule.duration * 60, "#{output}/#{file_name}"
       return file_name
     end
