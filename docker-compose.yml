@@ -2,6 +2,7 @@ version: '2'
 services:
   app:
     build: .
+    restart: always
     volumes:
-      - /home/ysaito/workspace/radio-recorder:/radio
+      - .:/radio
       - /mnt/box/Personal/radio/:/radio/data
