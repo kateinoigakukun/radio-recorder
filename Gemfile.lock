@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/kateinoigakukun/agradio-ruby.git
-  revision: d9837ffa116287fc0525401fc67273543662771c
+  revision: 9464fb87477eacd8ccdcf6bb6abd9a9150f7325d
   specs:
     agradio (0.1.0)
 
@@ -101,4 +101,4 @@ DEPENDENCIES
   slack-ruby-client
 
 BUNDLED WITH
-   1.13.6
+   1.16.2
