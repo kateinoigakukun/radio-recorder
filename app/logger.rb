@@ -32,11 +32,19 @@ class Logger
     end
 
     def log(text)
-      @slack_client.chat_postMessage(:channel => @channel, :text => text, :as_user => true)
+      begin
+        @slack_client.chat_postMessage(:channel => @channel, :text => text, :as_user => true)
+      rescue => error
+        puts "Failed to post to slack with Logger.log (#{error})"
+      end
     end
 
     def log_with_at(attachments)
-      @slack_client.chat_postMessage(:channel => @channel, :attachments => attachments, :as_user => true)
+      begin
+        @slack_client.chat_postMessage(:channel => @channel, :attachments => attachments, :as_user => true)
+      rescue => error
+        puts "Failed to post to slack with Logger.log_with_at (#{error})"
+      end
     end
   end
 end
