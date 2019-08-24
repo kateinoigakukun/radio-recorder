@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/kateinoigakukun/agradio-ruby.git
-  revision: 9464fb87477eacd8ccdcf6bb6abd9a9150f7325d
+  revision: 4a541b03c0f8535b82be5931b365c7bc54f74f27
   specs:
     agradio (0.1.0)
 
